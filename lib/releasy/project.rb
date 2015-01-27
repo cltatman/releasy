@@ -66,6 +66,7 @@ module Releasy
 
     DEFAULT_PACKAGE_FOLDER = "pkg"
 
+    attr_reader :exposed_files, :files, :links
     attr_writer :underscored_name, :underscored_version, :executable
 
     # @return [String] Name of the application, such as "My Application".
@@ -86,12 +87,9 @@ module Releasy
     # @return [nil]
     def create_md5s; @create_md5s = true; nil; end
     def create_md5s?; @create_md5s; end
-    protected :create_md5s?
 
-    def exposed_files; @exposed_files; end
     def exposed_files=(*files); @exposed_files = Rake::FileList.new *files; end
 
-    def files; @files; end
     def files=(*files); @files = Rake::FileList.new *files; end
 
     # @return [String]
@@ -293,11 +291,6 @@ module Releasy
     def underscored_description; underscored_name ? "#{underscored_name}#{version ? "_#{underscored_version}" : ""}" : nil; end
     # Base name of folders that will be created, such as "pkg/my_application" or "pkg/my_application_0_1"
     def folder_base; File.join(output_path, underscored_description.to_s); end
-
-    protected
-    # Only allow access to this from Builder
-    # @return [Hash]
-    def links; @links; end
 
     protected
     def setup; end

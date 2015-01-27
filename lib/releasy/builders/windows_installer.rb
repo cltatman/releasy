@@ -86,7 +86,7 @@ END
             file.puts %[Source: "#{readme}";  DestDir: "{app}"; Flags: isreadme] if readme
 
             dir = File.dirname(output_file).tr("/", "\\")
-            project.send(:links).each_value do |title|
+            project.links.each_value do |title|
               file.puts %[Source: "#{dir}\\#{title}.url"; DestDir: "{app}"]
             end
           end

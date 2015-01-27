@@ -58,7 +58,7 @@ module Packagers
         execute_command command(File.basename folder)
       end
 
-      File.open("#{pkg}.MD5", "w") {|f| f.puts checksum(pkg) } if project.send :create_md5s?
+      File.open("#{pkg}.MD5", "w") {|f| f.puts checksum(pkg) } if project.create_md5s?
     end
 
     protected

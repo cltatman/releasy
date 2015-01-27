@@ -39,7 +39,7 @@ module Builders
 
     protected
     def create_link_files(dir)
-      project.send(:links).each_pair do |url, title|
+      project.links.each_pair do |url, title|
         create_link_file url, File.join(dir, title)
       end
     end
